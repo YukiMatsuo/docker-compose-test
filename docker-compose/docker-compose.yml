@@ -1,0 +1,11 @@
+version: '2'
+services:
+  nginxserver:
+    image: nginx
+    volumes:
+      - ./nginx/conf.d:/docker-compose
+      - ../html:/html
+    ports:
+      - "80:80"
+      - "443:443"
+    command: /bin/bash -c "cp -Rp /docker-compose/* /etc/nginx/conf.d/ && nginx -g 'daemon off;'"
